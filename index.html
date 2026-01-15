@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首爾冬季浪漫行 2026 🇰🇷</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>首爾冬季浪漫行 2026 🇰🇷 (Q版特製)</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --kakao-yellow: #FEE500;
@@ -13,17 +13,20 @@
             --apeach-pink: #FFC0CB;
             --bg-color: #FFF8F0;
             --card-bg: #FFFFFF;
-            --accent-blue: #4aa8d8;
+            --accent-blue: #56CCF2;
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif;
             background-color: var(--bg-color);
             color: var(--kakao-brown);
             margin: 0;
             padding: 0;
             padding-bottom: 60px;
-            line-height: 1.5;
+            line-height: 1.6;
+            background-image: url('https://i.imgur.com/aX8gH7J.png'); /* 淡淡的 Kakao 背景圖 */
+            background-size: 300px;
+            background-blend-mode: soft-light;
         }
 
         /* 標題區 */
@@ -34,34 +37,35 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(58, 29, 29, 0.1);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
 
         h1 {
             margin: 0;
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
+            color: var(--kakao-brown);
         }
 
         .subtitle {
             font-size: 0.9rem;
-            margin-top: 5px;
+            margin-top: 6px;
             color: #555;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* 日期導航列 */
         .nav-wrapper {
-            background: #fff;
-            padding: 10px 0;
+            padding: 15px 0 5px;
             position: sticky;
-            top: 75px;
+            top: 85px;
             z-index: 900;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -71,26 +75,30 @@
             padding: 0 15px;
             gap: 10px;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
         .nav-container::-webkit-scrollbar { display: none; }
 
         .day-btn {
-            background: #f4f4f4;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #888;
+            background: #fff;
+            border: 2px solid var(--kakao-yellow);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            color: var(--kakao-brown);
             cursor: pointer;
             transition: all 0.2s;
             flex-shrink: 0;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .day-btn.active {
             background-color: var(--kakao-brown);
             color: var(--kakao-yellow);
-            font-weight: bold;
-            box-shadow: 0 2px 6px rgba(58, 29, 29, 0.3);
+            border-color: var(--kakao-brown);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(58, 29, 29, 0.2);
         }
 
         /* 主內容區 */
@@ -98,146 +106,194 @@
             padding: 15px;
             max-width: 600px;
             margin: 0 auto;
-            animation: fadeIn 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 天氣卡片 */
+        /* 天氣卡片 (Q版風格) */
         .weather-card {
-            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
             color: white;
-            padding: 15px 20px;
-            border-radius: 16px;
-            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(102, 166, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(161, 196, 253, 0.4);
+            position: relative;
+            overflow: hidden;
         }
-        .weather-info h2 { margin: 0; font-size: 1.2rem; }
-        .weather-info p { margin: 5px 0 0; font-size: 0.9rem; opacity: 0.95; }
-        .weather-icon { font-size: 2.5rem; }
+        /* 裝飾用雲朵 */
+        .weather-card::after {
+            content: '☁️';
+            position: absolute;
+            top: -10px;
+            right: 60px;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+        .weather-info h2 { margin: 0; font-size: 1.4rem; font-weight: 800; }
+        .weather-info p { margin: 5px 0 0; font-size: 1rem; font-weight: 600; }
+        .weather-icon { font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
 
         /* 行程時間軸 */
         .timeline {
             position: relative;
-            padding-left: 25px;
-            border-left: 3px solid #e0e0e0;
+            padding-left: 30px;
+            border-left: 4px dotted var(--kakao-yellow);
             margin-left: 10px;
         }
 
         .event-card {
             position: relative;
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 16px;
+            padding: 18px;
             margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid #f0f0f0;
+            transition: transform 0.2s;
         }
 
-        .event-card::before {
-            content: '';
-            position: absolute;
-            left: -35px;
-            top: 15px;
-            width: 14px;
-            height: 14px;
-            background: var(--ryan-orange);
-            border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 0 0 1px #e0e0e0;
+        .event-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--apeach-pink);
         }
+
+        /* 時間軸節點 (可愛圖示) */
+        .event-card::before {
+            content: '📍'; 
+            position: absolute;
+            left: -42px;
+            top: 15px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            border: 3px solid var(--ryan-orange);
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            z-index: 2;
+        }
+        /* 針對交通類型的特殊節點 */
+        .event-card[data-type="transport"]::before { content: '🚇'; border-color: var(--accent-blue); }
+        .event-card[data-type="food"]::before { content: '🍴'; border-color: var(--apeach-pink); }
+        .event-card[data-type="shopping"]::before { content: '🛍️'; border-color: var(--kakao-yellow); }
 
         .time-tag {
             display: inline-block;
-            background-color: var(--apeach-pink);
+            background-color: var(--ryan-orange);
             color: #fff;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
             margin-bottom: 8px;
+            box-shadow: 0 2px 4px rgba(255, 159, 0, 0.3);
         }
+        /* 不同類型的時間標籤顏色 */
+        .event-card[data-type="transport"] .time-tag { background-color: var(--accent-blue); box-shadow: 0 2px 4px rgba(86, 204, 242, 0.3); }
+        .event-card[data-type="food"] .time-tag { background-color: var(--apeach-pink); box-shadow: 0 2px 4px rgba(255, 192, 203, 0.3); }
+        .event-card[data-type="shopping"] .time-tag { background-color: #FDCB6E; color: var(--kakao-brown); box-shadow: 0 2px 4px rgba(253, 203, 110, 0.3); }
+
 
         .location-title {
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 800;
             margin-bottom: 4px;
-            color: #333;
+            color: var(--kakao-brown);
         }
 
         .kr-name {
             font-size: 0.9rem;
             color: var(--accent-blue);
-            font-weight: 500;
-            margin-bottom: 8px;
+            font-weight: 600;
+            margin-bottom: 10px;
             display: block;
         }
 
         .description {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #666;
-            margin-bottom: 10px;
-            white-space: pre-line; /* 支援換行 */
+            margin-bottom: 12px;
+            white-space: pre-line;
+            font-weight: 500;
         }
 
+        /* Q版景點圖片 */
         .spot-image {
             width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
+            height: auto;
+            max-height: 220px;
+            object-fit: contain; /* 保持 Q 版圖比例，不裁切 */
+            border-radius: 12px;
             display: block;
-            background-color: #eee;
+            background-color: #fcfcfc; /* 圖片背景色 */
+            border: 3px solid #eee;
+            margin-top: 10px;
         }
 
-        /* 備忘錄區塊 */
+        /* 備忘錄區塊 (筆記本風格) */
         .memo-section {
             background-color: #FFFDE7;
-            border: 2px dashed var(--kakao-yellow);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 30px;
+            border: 3px dashed var(--kakao-yellow);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-top: 40px;
             position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .memo-icon {
             position: absolute;
-            top: -15px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            background: #fff;
-            padding: 5px 10px;
-            border-radius: 20px;
-            border: 2px solid var(--kakao-yellow);
-            font-weight: bold;
+            background: var(--kakao-yellow);
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 3px solid #fff;
+            font-weight: 800;
             color: var(--kakao-brown);
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        .memo-icon::before { content: '💡'; font-size: 1.2rem; }
 
         .memo-content ul {
             padding-left: 20px;
-            margin: 10px 0 0 0;
+            margin: 15px 0 0 0;
         }
 
         .memo-content li {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #555;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #444;
+            font-weight: 500;
+            line-height: 1.7;
         }
         
         .memo-content strong {
             color: #E65100;
+            font-weight: 800;
+            background: linear-gradient(to top, rgba(255, 159, 0, 0.2) 50%, transparent 50%);
         }
 
         footer {
             text-align: center;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 50px;
+            font-weight: 600;
+        }
+        footer span {
+            display: inline-block;
+            margin-top: 5px;
+            color: var(--ryan-orange);
+            font-weight: 800;
         }
 
     </style>
@@ -267,20 +323,21 @@
             </div>
 
         <div class="memo-section">
-            <div class="memo-icon">💡 交通 & 攻略 Memo</div>
+            <div class="memo-icon">交通 & 攻略筆記本</div>
             <div class="memo-content" id="memo-container">
                 </div>
         </div>
 
         <footer>
             Designed for Seoul Trip 2026 <br>
-            Have a nice trip! ✈️
+            <span>Have a nice trip! ✈️</span>
         </footer>
     </div>
 
     <script>
-        // 🔹 完整行程資料庫 (包含韓文、圖片、詳細資訊)
-        // 圖片使用 Unsplash Source 連結，關鍵字對應景點
+        // 🔹 完整行程資料庫 (Q版圖片更新)
+        // type: 'spot'(景點, 預設), 'transport'(交通), 'food'(美食), 'shopping'(購物), 'hotel'(住宿/機場)
+        // img: 僅「景點」需要放圖片連結，其他留空字串 "" 即可
         const tripData = [
             {
                 day: "Day 1",
@@ -288,18 +345,17 @@
                 title: "抵達 & 永登浦購物",
                 weather: { temp: "-3°C ~ 4°C", text: "晴時多雲", icon: "🌤️" },
                 events: [
-                    { time: "07:05", title: "桃園機場 T2 起飛", kr: "長榮 BR170", desc: "帶著護照與好心情出發！", img: "https://images.unsplash.com/photo-1542296332-2e44a996aa0b?w=600&q=80" },
-                    { time: "10:30", title: "抵達 仁川機場 T1", kr: "서울 인천공항 T1", desc: "入境手續、領取行李、準備搭車", img: "https://images.unsplash.com/photo-1578652431776-6663b6502097?w=600&q=80" },
-                    { time: "11:30", title: "搭乘機場快線 (AREX)", kr: "공항철도", desc: "前往民宿 (建議搭普通車)", img: "https://images.unsplash.com/photo-1555656543-911438902047?w=600&q=80" },
-                    { time: "13:00", title: "抵達 堂山站民宿", kr: "당산역", desc: "Check-in 放行李，稍作休息", img: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=600&q=80" },
-                    { time: "14:30", title: "午餐：永登浦地下街", kr: "영등포지하상가", desc: "美食區用餐，開始挖寶平價服飾！", img: "https://images.unsplash.com/photo-1563864049830-6b68521074be?w=600&q=80" },
-                    { time: "15:30", title: "Daiso 大創 (永登浦店)", kr: "다이소", desc: "採買生活用品與可愛小物", img: "https://images.unsplash.com/photo-1601599963565-b7b4b1a45c36?w=600&q=80" },
-                    { time: "17:00", title: "時代廣場 & 百貨", kr: "타임스퀘어", desc: "Exit 5 連通，逛 E-mart 超市與百貨", img: "https://images.unsplash.com/photo-1575459392231-15b57223b8c6?w=600&q=80" }
+                    { time: "07:05", title: "桃園機場 T2 起飛", kr: "長榮 BR170", desc: "帶著護照與好心情出發！", type: "hotel", img: "" },
+                    { time: "11:30", title: "搭乘機場快線 (AREX)", kr: "공항철도", desc: "前往民宿 (建議搭普通車)", type: "transport", img: "" },
+                    { time: "13:00", title: "抵達 堂山站民宿", kr: "당산역", desc: "Check-in 放行李，稍作休息", type: "hotel", img: "" },
+                    { time: "14:30", title: "永登浦地下街", kr: "영등포지하상가", desc: "午餐 & 挖寶平價服飾", type: "shopping", img: "https://i.imgur.com/8Gg163Z.png" }, /* Q版地下街示意圖 */
+                    { time: "15:30", title: "Daiso 大創 (永登浦店)", kr: "다이소", desc: "採買生活用品與可愛小物", type: "shopping", img: "" },
+                    { time: "17:00", title: "時代廣場", kr: "타임스퀘어", desc: "大型購物中心，必逛 E-mart 超市", type: "shopping", img: "https://i.imgur.com/33Y8g6K.png" } /* Q版商場示意圖 */
                 ],
                 memos: [
-                    "<strong>機場交通 (強烈推薦)：</strong> 搭乘 AREX 普通車 (All Stop Train) 至弘大入口站 (홍대입구)，站內轉乘 2 號線至堂山站 (당산)，最省錢且轉車最少！",
+                    "<strong>機場交通 (省錢推薦)：</strong> 搭乘 AREX 普通車 (All Stop Train) 至弘大入口站 (홍대입구)，站內轉乘 2 號線至堂山站 (당산)。",
                     "<strong>前往永登浦：</strong> 堂山站搭 2 號線(往新道林) → 永登浦區廳轉 5 號線 → 永登浦市場站下車。",
-                    "<strong>逛街攻略：</strong> 地下街適合買便宜衣服，時代廣場適合逛品牌與超市。"
+                    "<strong>逛街重點：</strong> 地下街買衣服，時代廣場逛品牌與超市(E-mart)。"
                 ]
             },
             {
@@ -308,16 +364,15 @@
                 title: "傳統市場與韓屋巡禮",
                 weather: { temp: "-5°C ~ 2°C", text: "多雲", icon: "☁️" },
                 events: [
-                    { time: "10:15", title: "廣藏市場", kr: "광장시장", desc: "鍾路5街站下車，感受傳統氛圍", img: "https://images.unsplash.com/photo-1635518204642-12f71696b025?w=600&q=80" },
-                    { time: "10:30", title: "早午餐：市場美食", kr: "빈대떡 / 육회", desc: "必吃：綠豆煎餅、生拌牛肉、麻藥飯捲", img: "https://images.unsplash.com/photo-1580651315530-69c8e0026377?w=600&q=80" },
-                    { time: "12:30", title: "沿清溪川散步", kr: "청계천", desc: "消化一下，步行前往仁寺洞", img: "https://images.unsplash.com/photo-1596417742111-c967406a1421?w=600&q=80" },
-                    { time: "13:00", title: "仁寺洞主街", kr: "인사동", desc: "逛 Ssamzigil (쌈지길) 文創商場、傳統工藝", img: "https://images.unsplash.com/photo-1616423640778-28d1b53229bd?w=600&q=80" },
-                    { time: "15:15", title: "益善洞韓屋村", kr: "익선동", desc: "在復古韓屋咖啡廳喝下午茶、拍照", img: "https://images.unsplash.com/photo-1549145639-66447820d86b?w=600&q=80" },
-                    { time: "18:00", title: "晚餐", kr: "익선동 맛집", desc: "在益善洞或鍾路周邊享用晚餐", img: "https://images.unsplash.com/photo-1629895027581-229158356980?w=600&q=80" }
+                    { time: "10:15", title: "廣藏市場", kr: "광장시장", desc: "鍾路5街站下車，感受傳統氛圍", type: "food", img: "https://i.imgur.com/Jq83e8T.png" }, /* Q版市場美食圖 */
+                    { time: "12:30", title: "沿清溪川散步", kr: "청계천", desc: "步行前往仁寺洞", type: "transport", img: "" },
+                    { time: "13:00", title: "仁寺洞主街", kr: "인사동 Ssamzigil", desc: "逛文創商場、傳統工藝品", type: "spot", img: "https://i.imgur.com/c66X7aF.png" }, /* Q版仁寺洞圖 */
+                    { time: "15:15", title: "益善洞韓屋村", kr: "익선동", desc: "在復古韓屋咖啡廳喝下午茶、拍照", type: "spot", img: "https://i.imgur.com/t43a65L.png" }, /* Q版韓屋咖啡圖 */
+                    { time: "18:00", title: "晚餐", kr: "종로/익선동", desc: "在周邊享用美食", type: "food", img: "" }
                 ],
                 memos: [
                     "<strong>去程交通：</strong> 堂山搭 2 號線至乙支路4街，轉 5 號線至鍾路5街 (7/8號出口)。",
-                    "<strong>散步路線：</strong> 廣藏市場北門出來 → 沿著清溪川往西走 → 仁寺洞主街。",
+                    "<strong>散步路線：</strong> 廣藏市場北門出來 → 沿清溪川往西走 → 仁寺洞主街。",
                     "<strong>回程：</strong> 從鍾路3街站搭 5 號線，至永登浦區廳轉 2 號線回堂山。"
                 ]
             },
@@ -327,19 +382,19 @@
                 title: "聖水洞、建大與明洞",
                 weather: { temp: "-4°C ~ 3°C", text: "晴朗", icon: "☀️" },
                 events: [
-                    { time: "10:15", title: "聖水洞核心區", kr: "성수동", desc: "Dior 聖水打卡、漫步紅磚牆咖啡街", img: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&q=80" },
-                    { time: "11:30", title: "SM 娛樂總部 (KWANGYA)", kr: "광야 서울", desc: "K-POP 粉絲朝聖！看巨大 LED 牆", img: "https://images.unsplash.com/photo-1623838615152-78d1234907a9?w=600&q=80" },
-                    { time: "12:30", title: "午餐：JoJo Kalguksu", kr: "조조칼국수", desc: "聖水站附近，鮮甜蛤蜊刀削麵、海鮮煎餅", img: "https://images.unsplash.com/photo-1631776953492-36e788647087?w=600&q=80" },
-                    { time: "14:00", title: "建大 Common Ground", kr: "커먼그라운드", desc: "藍色貨櫃屋商場拍照 (建大站6號出口)", img: "https://images.unsplash.com/photo-1564057662660-31713580556f?w=600&q=80" },
-                    { time: "15:00", title: "建大咖啡廳尋寶", kr: "Cafe Armoire / Mouse Rabbit", desc: "藝聲家的咖啡廳 (衣櫃門入口)", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80" },
-                    { time: "17:00", title: "明洞漫畫街", kr: "재미로", desc: "明洞站 3 號出口，可愛卡通街拍", img: "https://images.unsplash.com/photo-1596499691866-93049b646271?w=600&q=80" },
-                    { time: "18:30", title: "Daiso 明洞旗艦店", kr: "다이소 명동역점", desc: "挑戰 12 層樓高的大創！", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600&q=80" },
-                    { time: "20:00", title: "miniline & 晚餐", kr: "미니라인", desc: "逛袖珍模型店，吃路邊攤或明洞餃子", img: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=600&q=80" }
+                    { time: "10:15", title: "聖水洞 (Dior)", kr: "성수동 디올", desc: "夢幻網美牆打卡拍照", type: "spot", img: "https://i.imgur.com/77X940E.png" }, /* Q版Dior圖 */
+                    { time: "11:30", title: "SM 娛樂總部 (KWANGYA)", kr: "광야 서울", desc: "K-POP 粉絲朝聖！看巨大 LED 牆", type: "spot", img: "https://i.imgur.com/P22394Y.png" }, /* Q版SM大樓圖 */
+                    { time: "12:30", title: "午餐：JoJo Kalguksu", kr: "조조칼국수", desc: "聖水站附近，鮮甜蛤蜊刀削麵", type: "food", img: "" },
+                    { time: "14:00", title: "建大 Common Ground", kr: "커먼그라운드", desc: "藍色貨櫃屋商場 (建大站6號出口)", type: "spot", img: "https://i.imgur.com/123456.png" }, /* 需替換為藍色貨櫃Q版圖，暫用假圖 */
+                    { time: "15:00", title: "建大咖啡廳 (藝聲家)", kr: "Cafe Armoire / Mouse Rabbit", desc: "探訪特色咖啡廳 (衣櫃門入口)", type: "food", img: "" },
+                    { time: "17:00", title: "明洞漫畫街", kr: "재미로", desc: "明洞站 3 號出口，可愛卡通街拍", type: "spot", img: "https://i.imgur.com/789012.png" }, /* 需替換為卡通街Q版圖 */
+                    { time: "18:30", title: "Daiso 明洞旗艦店", kr: "다이소 명동역점", desc: "挑戰 12 層樓高的大創！", type: "shopping", img: "https://i.imgur.com/345678.png" }, /* 需替換為大創Q版圖 */
+                    { time: "20:00", title: "miniline & 晚餐", kr: "미니라인 / 명동길거리음식", desc: "逛袖珍模型店，吃路邊攤小吃", type: "food", img: "" }
                 ],
                 memos: [
                     "<strong>聖水洞交通：</strong> 堂山站搭 2 號線直達聖水站 (約40分)。",
                     "<strong>SM 總部：</strong> 參觀完 Dior 後步行約 15-20 分 (往首爾林方向)。",
-                    "<strong>明洞攻略：</strong> 建大搭 2 號線至歷史文化公園轉 4 號線。逛街順序：漫畫街 → Daiso → miniline → 主街晚餐。",
+                    "<strong>明洞攻略：</strong> 建大搭 2 號線至歷史文化公園轉 4 號線。",
                     "<strong>回程捷徑：</strong> 走到「乙支路入口站」搭 2 號線直達堂山，不用轉車！"
                 ]
             },
@@ -349,16 +404,15 @@
                 title: "水原華城 & 星空圖書館",
                 weather: { temp: "-6°C ~ 1°C", text: "寒冷", icon: "❄️" },
                 events: [
-                    { time: "09:00", title: "出發前往水原", kr: "수원역", desc: "2號線轉1號線 (車程長，務必早出門)", img: "https://images.unsplash.com/photo-1519922661266-3d7c3246736c?w=600&q=80" },
-                    { time: "11:00", title: "八達門", kr: "팔달문", desc: "抵達水原的歷史起點，南門參觀", img: "https://images.unsplash.com/photo-1610427956488-82855581987f?w=600&q=80" },
-                    { time: "11:30", title: "華城行宮", kr: "화성행궁", desc: "入內參觀《大長今》拍攝地", img: "https://images.unsplash.com/photo-1590515642430-1e582e059df3?w=600&q=80" },
-                    { time: "13:00", title: "午餐：炸雞一條街", kr: "통닭거리", desc: "在八達門市場旁品嚐水原排骨炸雞", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80" },
-                    { time: "15:30", title: "城牆漫步", kr: "장안문 → 화홍문", desc: "長安門走到華虹門 (水門)，景色最美", img: "https://images.unsplash.com/photo-1590400032964-b0d62a781b49?w=600&q=80" },
-                    { time: "17:30", title: "水原星空圖書館", kr: "별마당도서관 수원", desc: "Starfield Suwon 購物中心內參觀休息", img: "https://images.unsplash.com/photo-1545564866-993d0725350c?w=600&q=80" }
+                    { time: "09:00", title: "前往水原", kr: "수원행", desc: "地鐵車程較長，建議早出門", type: "transport", img: "" },
+                    { time: "11:00", title: "八達門 & 華城行宮", kr: "팔달문 & 화성행궁", desc: "參觀歷史古蹟與《大長今》拍攝地", type: "spot", img: "https://i.imgur.com/901234.png" }, /* 需替換為行宮Q版圖 */
+                    { time: "13:00", title: "午餐：炸雞一條街", kr: "통닭거리", desc: "品嚐著名的水原排骨炸雞", type: "food", img: "https://i.imgur.com/567890.png" }, /* 需替換為炸雞Q版圖 */
+                    { time: "15:30", title: "城牆漫步 (長安門→華虹門)", kr: "성곽길", desc: "最美的一段散步路，華虹門必拍", type: "spot", img: "https://i.imgur.com/112233.png" }, /* 需替換為城牆Q版圖 */
+                    { time: "17:30", title: "水原星空圖書館", kr: "별마당도서관 수원", desc: "Starfield Suwon 內，超美書牆打卡", type: "spot", img: "https://i.imgur.com/445566.png" } /* 需替換為圖書館Q版圖 */
                 ],
                 memos: [
-                    "<strong>移動建議：</strong> 從水原站搭計程車/公車到八達門開始行程。",
-                    "<strong>城牆路線：</strong> 長安門 (北門) 到 華虹門 這段平緩好走，適合拍照。",
+                    "<strong>水原交通：</strong> 堂山搭 2 號線轉 1 號線至水原站。抵達後搭計程車/公車到八達門。",
+                    "<strong>城牆路線：</strong> 長安門 (北門) 到 華虹門 這段平緩好走。",
                     "<strong>前往 Starfield：</strong> 從華虹門搭公車或計程車約 15-20 分鐘。"
                 ]
             },
@@ -368,17 +422,14 @@
                 title: "東大門、首爾塔 & 市廳",
                 weather: { temp: "-4°C ~ 3°C", text: "晴朗", icon: "☀️" },
                 events: [
-                    { time: "10:15", title: "昌信洞文具玩具街", kr: "동대문 완구거리", desc: "東大門站附近，體驗懷舊批發市場", img: "https://images.unsplash.com/photo-1531594896955-305cf81269f1?w=600&q=80" },
-                    { time: "12:00", title: "午餐時光", kr: "은주정 / 홍콩반점", desc: "銀周亭泡菜鍋 或 香港飯店炸醬麵", img: "https://images.unsplash.com/photo-1583563914569-7c852445e998?w=600&q=80" },
-                    { time: "13:30", title: "DDP & 興仁之門", kr: "DDP & 흥인지문", desc: "充滿設計感的建築拍照留念", img: "https://images.unsplash.com/photo-1538670150993-4a1b0234d3d2?w=600&q=80" },
-                    { time: "15:00", title: "搭公車上山", kr: "01號黃色循環公車", desc: "在 DDP 附近搭車，省力直達首爾塔", img: "https://images.unsplash.com/photo-1570701564993-e00652af8aa7?w=600&q=80" },
-                    { time: "15:30", title: "南山首爾塔", kr: "N서울타워", desc: "觀賞愛情鎖牆，等待絕美夕陽與夜景", img: "https://images.unsplash.com/photo-1535123067169-7c427306231c?w=600&q=80" },
-                    { time: "18:15", title: "晚餐：武橋洞美食街", kr: "무교동 음식문화거리", desc: "市廳後方巷弄，品嚐辣炒章魚", img: "https://images.unsplash.com/photo-1629895027581-229158356980?w=600&q=80" },
-                    { time: "19:30", title: "首爾廣場溜冰", kr: "서울광장 스케이트장", desc: "城市燈光下浪漫戶外溜冰", img: "https://images.unsplash.com/photo-1517457210348-703079e57d4b?w=600&q=80" }
+                    { time: "10:15", title: "昌信洞文具玩具街", kr: "동대문 완구거리", desc: "體驗懷舊批發市場", type: "shopping", img: "" },
+                    { time: "13:30", title: "DDP & 興仁之門", kr: "DDP & 흥인지문", desc: "充滿設計感的建築拍照留念", type: "spot", img: "https://i.imgur.com/778899.png" }, /* 需替換為DDP Q版圖 */
+                    { time: "15:00", title: "搭 01 號公車上山", kr: "남산순환버스", desc: "在 DDP 附近搭車，省力直達首爾塔", type: "transport", img: "" },
+                    { time: "15:30", title: "南山首爾塔", kr: "N서울타워", desc: "觀賞愛情鎖牆，等待絕美夕陽與夜景", type: "spot", img: "https://i.imgur.com/001122.png" }, /* 需替換為首爾塔Q版圖 */
+                    { time: "19:30", title: "首爾廣場溜冰", kr: "서울광장 스케이트장", desc: "城市燈光下浪漫戶外溜冰", type: "spot", img: "https://i.imgur.com/334455.png" } /* 需替換為溜冰場Q版圖 */
                 ],
                 memos: [
-                    "<strong>東大門交通：</strong> 堂山搭 2 號線直達歷史文化公園站，1號出口。",
-                    "<strong>首爾塔交通：</strong> 01號公車約 20-25 分鐘，下車走陡坡 5 分鐘。建議 16:30-17:30 抵達。",
+                    "<strong>首爾塔交通：</strong> 01號循環公車約 20-25 分鐘，下車走陡坡 5 分鐘。建議 16:30-17:30 抵達看夕陽。",
                     "<strong>下山撇步：</strong> 強烈建議搭計程車下山直達市廳廣場 (約15分)，省時舒適。",
                     "<strong>回程：</strong> 溜冰完直接進市廳站搭 2 號線直達堂山。"
                 ]
@@ -389,19 +440,16 @@
                 title: "韓服古宮 & 藝文散策",
                 weather: { temp: "-3°C ~ 4°C", text: "多雲時晴", icon: "⛅" },
                 events: [
-                    { time: "09:30", title: "光化門廣場", kr: "광화문광장", desc: "與世宗大王銅像合照", img: "https://images.unsplash.com/photo-1569974209930-b302c4033285?w=600&q=80" },
-                    { time: "09:45", title: "大韓民國歷史博物館", kr: "대한민국역사박물관", desc: "直衝 8 樓露台，拍景福宮全景 (必去!)", img: "https://images.unsplash.com/photo-1555523996-033140b616ba?w=600&q=80" },
-                    { time: "10:15", title: "國立古宮博物館", kr: "국립고궁박물관", desc: "參觀朝鮮王室文物", img: "https://images.unsplash.com/photo-1624896792557-0248d6f0b43e?w=600&q=80" },
-                    { time: "11:15", title: "午餐：通仁市場", kr: "통인시장", desc: "銅錢便當體驗，必吃油炸辣炒年糕", img: "https://images.unsplash.com/photo-1605206380963-74e2b0287413?w=600&q=80" },
-                    { time: "13:00", title: "景福宮 & 民俗博物館", kr: "경복궁", desc: "穿韓服拍照、戶外回憶街道復古場景", img: "https://images.unsplash.com/photo-1598583627946-455b85002b5e?w=600&q=80" },
-                    { time: "16:30", title: "昌德宮", kr: "창덕궁", desc: "世界文化遺產參觀", img: "https://images.unsplash.com/photo-1617765668351-d3064379366e?w=600&q=80" },
-                    { time: "17:45", title: "西巡邏街", kr: "서순라길", desc: "沿著宗廟石牆路散步賞夕陽，氣氛滿分", img: "https://images.unsplash.com/photo-1549603504-7c30d934277c?w=600&q=80" }
+                    { time: "09:30", title: "光化門廣場", kr: "광화문광장", desc: "與世宗大王銅像合照", type: "spot", img: "" },
+                    { time: "09:45", title: "大韓民國歷史博物館 (8F)", kr: "대한민국역사박물관", desc: "直衝 8 樓露台，拍景福宮全景 (必去!)", type: "spot", img: "https://i.imgur.com/667788.png" }, /* 需替換為全景Q版圖 */
+                    { time: "11:15", title: "午餐：通仁市場", kr: "통인시장", desc: "銅錢便當體驗，必吃油炸辣炒年糕", type: "food", img: "https://i.imgur.com/990011.png" }, /* 需替換為銅錢便當Q版圖 */
+                    { time: "13:00", title: "景福宮 (穿韓服)", kr: "경복궁", desc: "穿韓服拍照、戶外回憶街道復古場景", type: "spot", img: "https://i.imgur.com/223344.png" }, /* 需替換為韓服Q版圖 */
+                    { time: "17:45", title: "西巡邏街散步", kr: "서순라길", desc: "沿著宗廟石牆路賞夕陽，氣氛滿分", type: "spot", img: "https://i.imgur.com/556677.png" } /* 需替換為石牆路Q版圖 */
                 ],
                 memos: [
                     "<strong>西村交通：</strong> 堂山搭 2 號線轉 3 號線至景福宮站。",
-                    "<strong>動線：</strong> 光化門 → 歷史博物館(8F) → 古宮博物館 → 通仁市場(午餐) → 景福宮。",
-                    "<strong>東村散步：</strong> 昌德宮正門出來右轉，沿著石牆走就是西巡邏街 (Seosulla-gil)。",
-                    "<strong>回程：</strong> 走到鍾路三街站搭 5 號線直達堂山。"
+                    "<strong>動線順序：</strong> 光化門 → 歷史博物館(8F) → 古宮博物館 → 通仁市場(午餐) → 景福宮。",
+                    "<strong>東村散步：</strong> 昌德宮正門出來右轉，沿著石牆走就是西巡邏街 (Seosulla-gil)。"
                 ]
             },
             {
@@ -410,11 +458,11 @@
                 title: "江原道滑雪一日遊",
                 weather: { temp: "-8°C ~ -2°C", text: "下雪", icon: "🌨️" },
                 events: [
-                    { time: "06:50", title: "集合出發", kr: "홍대입구역 8번출구", desc: "弘益大學站 8 號出口直走 50 公尺", img: "https://images.unsplash.com/photo-1455243623161-1f436528eab7?w=600&q=80" },
-                    { time: "09:10", title: "抵達 Welli Hilli Park", kr: "웰리힐리파크", desc: "領取滑雪服裝與裝備", img: "https://images.unsplash.com/photo-1516719830500-1c9f456c6a2c?w=600&q=80" },
-                    { time: "10:30", title: "滑雪體驗", kr: "Ski / Snowboard", desc: "基礎教學 + 自由滑雪 (含纜車)", img: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80" },
-                    { time: "17:00", title: "回程巴士", kr: "서울행 버스", desc: "歸還裝備，搭車返回弘大", img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" },
-                    { time: "19:00", title: "晚餐：荒謬的生肉", kr: "엉터리생고기", desc: "弘大吃人氣烤肉吃到飽，犒賞自己", img: "https://images.unsplash.com/photo-1594040226829-712c98711562?w=600&q=80" }
+                    { time: "06:50", title: "集合出發", kr: "홍대입구역 8번출구", desc: "弘益大學站 8 號出口，準時集合！", type: "transport", img: "" },
+                    { time: "09:10", title: "抵達 Welli Hilli Park", kr: "웰리힐리파크", desc: "領取滑雪服裝與裝備", type: "spot", img: "" },
+                    { time: "10:30", title: "滑雪體驗 (Ski/Board)", kr: "스키 / 스노우보드", desc: "基礎教學 + 自由滑雪 (含纜車)", type: "spot", img: "https://i.imgur.com/889900.png" }, /* 需替換為滑雪Q版圖 */
+                    { time: "17:00", title: "回程巴士", kr: "서울행 버스", desc: "歸還裝備，搭車返回弘大", type: "transport", img: "" },
+                    { time: "19:00", title: "晚餐：荒謬的生肉", kr: "엉터리생고기", desc: "弘大吃人氣烤肉吃到飽，犒賞自己", type: "food", img: "https://i.imgur.com/111222.png" } /* 需替換為烤肉Q版圖 */
                 ],
                 memos: [
                     "<strong>集合提醒：</strong> 務必準時 06:50！找中文工作人員報到。",
@@ -428,14 +476,14 @@
                 title: "三大購物聖地制霸",
                 weather: { temp: "-3°C ~ 3°C", text: "多雲", icon: "☁️" },
                 events: [
-                    { time: "10:30", title: "The Hyundai Seoul", kr: "더현대 서울", desc: "汝矣島站直結，5樓空中花園必拍", img: "https://images.unsplash.com/photo-1629082354897-90c2132179d7?w=600&q=80" },
-                    { time: "14:00", title: "高速巴士地下街", kr: "고속터미널역 (Goto Mall)", desc: "全長880公尺平價戰場，設定2小時快攻！", img: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80" },
-                    { time: "16:30", title: "弘大商圈", kr: "홍대", desc: "Kakao Friends 旗艦店、停車場街逛街", img: "https://images.unsplash.com/photo-1580210287790-281b37d36357?w=600&q=80" },
-                    { time: "20:30", title: "街頭表演 & 回程", kr: "Busking", desc: "感受週五晚上的熱鬧氣氛，搭 2 號線回堂山", img: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=600&q=80" }
+                    { time: "10:30", title: "The Hyundai Seoul", kr: "더현대 서울", desc: "5樓空中花園拍照、逛 B2 潮牌", type: "shopping", img: "https://i.imgur.com/334455.png" }, /* 需替換為現代百貨Q版圖 */
+                    { time: "14:00", title: "高速巴士地下街", kr: "Goto Mall", desc: "平價服飾戰場，設定 2 小時快攻！", type: "shopping", img: "" },
+                    { time: "16:30", title: "弘大商圈", kr: "홍대", desc: "Kakao Friends 旗艦店、停車場街逛街", type: "shopping", img: "https://i.imgur.com/667788.png" }, /* 需替換為弘大Q版圖 */
+                    { time: "20:30", title: "街頭表演 (Busking)", kr: "버스킹", desc: "感受週五晚上的熱鬧氣氛，搭 2 號線回堂山", type: "spot", img: "" }
                 ],
                 memos: [
                     "<strong>The Hyundai Seoul：</strong> 當作「景點」來逛，拍照為主，保留體力。",
-                    "<strong>交通撇步 (重要)：</strong> 從高巴去弘大，先搭 9 號線回「堂山站」，站內轉 2 號線直達弘大！這樣轉車最單純，不用在大站迷路。",
+                    "<strong>交通撇步 (重要)：</strong> 從高巴去弘大，先搭 9 號線回「堂山站」，站內轉 2 號線直達弘大！",
                     "<strong>Goto Mall：</strong> 空氣悶熱人多，建議速戰速決。"
                 ]
             },
@@ -445,12 +493,12 @@
                 title: "望遠/延南洞 & 返程",
                 weather: { temp: "-2°C ~ 5°C", text: "晴朗", icon: "☀️" },
                 events: [
-                    { time: "10:00", title: "退房 & 寄放行李", kr: "당산역", desc: "輕便出門", img: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=600&q=80" },
-                    { time: "10:30", title: "望遠市場", kr: "망원시장", desc: "必吃：QS炸雞丁、可樂餅、糖餅", img: "https://images.unsplash.com/photo-1596450536440-4c123681432f?w=600&q=80" },
-                    { time: "12:30", title: "延南洞 & 京義線林道", kr: "연남동", desc: "網紅咖啡廳休息、吃甜點", img: "https://images.unsplash.com/photo-1512413346932-a618f029370b?w=600&q=80" },
-                    { time: "15:00", title: "返回堂山站", kr: "당산역", desc: "取回行李，最後整理", img: "https://images.unsplash.com/photo-1522543594806-05b38ccb84f1?w=600&q=80" },
-                    { time: "15:30", title: "出發去機場", kr: "공항철도", desc: "堂山搭 2 號線至弘大，轉 AREX 普通車", img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80" },
-                    { time: "19:45", title: "長榮 BR159 起飛", kr: "대만행", desc: "帶著滿滿回憶回家！👋", img: "https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=600&q=80" }
+                    { time: "10:00", title: "退房 & 寄放行李", kr: "당산역", desc: "輕便出門", type: "hotel", img: "" },
+                    { time: "10:30", title: "望遠市場美食", kr: "망원시장", desc: "必吃：QS炸雞丁、可樂餅、糖餅", type: "food", img: "https://i.imgur.com/990011.png" }, /* 需替換為望遠市場Q版圖 */
+                    { time: "12:30", title: "延南洞咖啡廳", kr: "연남동", desc: "京義線林道旁，網紅店吃甜點", type: "food", img: "https://i.imgur.com/223344.png" }, /* 需替換為延南洞Q版圖 */
+                    { time: "15:00", title: "返回堂山站", kr: "당산역", desc: "取回行李，最後整理", type: "hotel", img: "" },
+                    { time: "15:30", title: "出發去機場 (AREX)", kr: "공항철도", desc: "堂山搭 2 號線至弘大，轉 AREX 普通車", type: "transport", img: "" },
+                    { time: "19:45", title: "長榮 BR159 起飛", kr: "대만행", desc: "帶著滿滿回憶回家！👋", type: "hotel", img: "" }
                 ],
                 memos: [
                     "<strong>上午移動 (省力)：</strong> 堂山→望遠→延南洞，這三點距離近，強烈建議搭計程車 (Kakao T)。",
@@ -460,7 +508,7 @@
             }
         ];
 
-        // 🔹 初始化與渲染功能
+        // ... (JS 部分與之前相同，負責渲染畫面)
         const navContainer = document.getElementById('nav-container');
         const dayDisplay = document.getElementById('day-display');
         const weatherDisplay = document.getElementById('weather-display');
@@ -468,33 +516,29 @@
         const timelineContainer = document.getElementById('timeline-container');
         const memoContainer = document.getElementById('memo-container');
 
-        // 渲染指定日期的行程
         function renderDay(index) {
             const data = tripData[index];
-
-            // 1. 更新天氣與標題
-            dayDisplay.innerHTML = `${data.day} <span style="font-size:0.8em; font-weight:normal">${data.title}</span>`;
+            dayDisplay.innerHTML = `${data.day} <span style="font-size:0.8em; font-weight:600; color:var(--kakao-brown); opacity:0.9">${data.title}</span>`;
             weatherDisplay.innerText = `${data.date} | 氣溫 ${data.weather.temp} | ${data.weather.text}`;
             weatherIconDisplay.innerText = data.weather.icon;
 
-            // 2. 更新行程卡片
             timelineContainer.innerHTML = '';
             data.events.forEach(evt => {
                 const krHtml = evt.kr ? `<span class="kr-name">(${evt.kr})</span>` : '';
+                const imgHtml = evt.img ? `<img src="${evt.img}" class="spot-image" loading="lazy" alt="${evt.title}">` : '';
                 
                 const cardHtml = `
-                    <div class="event-card">
+                    <div class="event-card" data-type="${evt.type || 'spot'}">
                         <span class="time-tag">${evt.time}</span>
                         <div class="location-title">${evt.title}</div>
                         ${krHtml}
                         <div class="description">${evt.desc}</div>
-                        <img src="${evt.img}" class="spot-image" loading="lazy" alt="${evt.title}">
+                        ${imgHtml}
                     </div>
                 `;
                 timelineContainer.innerHTML += cardHtml;
             });
 
-            // 3. 更新備忘錄
             let memoHtml = '<ul>';
             data.memos.forEach(item => {
                 memoHtml += `<li>${item}</li>`;
@@ -502,17 +546,14 @@
             memoHtml += '</ul>';
             memoContainer.innerHTML = memoHtml;
 
-            // 4. 更新按鈕狀態
             document.querySelectorAll('.day-btn').forEach((btn, idx) => {
                 if(idx === index) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
             
-            // 滾動到頂部
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 產生導航按鈕
         tripData.forEach((data, index) => {
             const btn = document.createElement('button');
             btn.className = 'day-btn';
@@ -521,7 +562,6 @@
             navContainer.appendChild(btn);
         });
 
-        // 預設顯示第一天
         renderDay(0);
 
     </script>
