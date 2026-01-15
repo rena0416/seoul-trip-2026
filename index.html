@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首爾冬季浪漫行 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F0F4F8; color: #333; }
+        .ryan-yellow { background-color: #FFC436; }
+        .ryan-text { color: #FFC436; }
+        .tab-active { border-bottom: 4px solid #FFC436; color: #FFC436; font-weight: bold; transform: scale(1.1); }
+        .timeline-dot { position: absolute; left: -9px; top: 10px; width: 18px; height: 18px; background: #FFC436; border: 3px solid white; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .naver-link { color: #03C75A; font-size: 0.8rem; border: 1px solid #03C75A; padding: 1px 6px; border-radius: 12px; transition: all 0.2s; }
+        .naver-link:hover { background: #03C75A; color: white; }
+    </style>
+</head>
+<body class="pb-12">
+
+    <header class="ryan-yellow p-6 text-center shadow-lg sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-white tracking-wide">首爾冬季浪漫行 🇰🇷</h1>
+        <p class="text-white text-sm opacity-90">Jan 23 - Jan 31, 2026</p>
+    </header>
+
+    <nav class="bg-white shadow-sm sticky top-[88px] z-40 overflow-x-auto">
+        <div class="flex p-4 space-x-6 min-w-max" id="dateTabs">
+            </div>
+    </nav>
+
+    <main class="max-w-xl mx-auto px-4 mt-6">
+        <div id="dayCard" class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
+            <div class="flex justify-between items-start mb-8 border-b pb-4">
+                <div>
+                    <h2 id="dayTitle" class="text-xl font-bold text-gray-800">載入中...</h2>
+                    <p id="dayDate" class="text-gray-500 text-sm mt-1"></p>
+                </div>
+                <div id="weather" class="text-right bg-blue-50 p-2 rounded-xl">
+                    <p class="text-[10px] text-blue-400 font-bold uppercase">Forecast</p>
+                    <div id="weatherIcon" class="text-xl font-bold text-blue-600">--°C</div>
+                </div>
+            </div>
+
+            <div id="timeline" class="relative border-l-2 border-dashed border-gray-200 ml-3 pl-8 space-y-10">
+                </div>
+
+            <div id="memoSection" class="mt-12 bg-yellow-50 rounded-2xl p-5 border border-yellow-100">
+                <h3 class="font-bold text-yellow-700 flex items-center mb-3">
+                    <i class="fa-solid fa-lightbulb mr-2"></i> 詳細指引 & 攻略
+                </h3>
+                <ul id="memoList" class="text-sm text-gray-600 space-y-3 list-decimal ml-4">
+                    </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        const itineraryData = {
+            1: { title: "Day 1: 抵達 & 永登浦購物", date: "2026/01/23 (週五)", weather: "❄️ -2~3°C", memos: ["機場到堂山搭 AREX 普通車(轉2號線)最便宜輕鬆", "永登浦地下街適合挖寶平價服飾", "時代廣場有大型 E-mart、電影院"], events: [
+                { t: "07:05", d: "桃園機場 T2 起飛 (BR170)", loc: "桃園機場" },
+                { t: "10:30", d: "抵達仁川機場 T1", loc: "Incheon Airport T1" },
+                { t: "13:00", d: "抵達堂山站民宿 (Dangsan)", loc: "당산역" },
+                { t: "14:30", d: "午餐：永登浦地下街美食", loc: "영등포지하상가" },
+                { t: "15:30", d: "Daiso 大創 (永登浦店)", loc: "다이소 영등포점" },
+                { t: "17:00", d: "永登浦百貨 & 時代廣場", loc: "Times Square Seoul" }
+            ]},
+            2: { title: "Day 2: 傳統市場與韓屋巡禮", date: "2026/01/24 (週六)", weather: "☁️ -4~1°C", memos: ["廣藏市場必吃綠豆煎餅、生拌牛肉", "益善洞巷弄咖啡廳非常拍，建議下午去", "回程可從鐘路3街站直達堂山"], events: [
+                { t: "10:15", d: "廣藏市場 (Gwangjang Market)", loc: "광장시장" },
+                { t: "13:00", d: "仁寺洞主街逛街 (傳統工藝)", loc: "인사동" },
+                { t: "15:15", d: "益善洞韓屋村 (網美咖啡廳)", loc: "익선동" },
+                { t: "18:00", d: "晚餐：益善洞周邊美食", loc: "익선동 맛집" }
+            ]},
+            3: { title: "Day 3: 聖水、建大、明洞全制霸", date: "2026/01/25 (週日)", weather: "☀️ -2°C", memos: ["Dior 聖水是必拍打卡點", "Daiso 明洞店有12層樓，建議由上往下逛", "回程走至乙支路入口站搭2號線最快"], events: [
+                { t: "10:15", d: "聖水洞核心區 (Dior 打卡)", loc: "Dior Seongsu" },
+                { t: "11:30", d: "SM 娛樂聖水總部 (KWANGYA)", loc: "KWANGYA@SEOUL" },
+                { t: "12:30", d: "午餐：JoJo Kalgu-ksu (刀削麵)", loc: "조조칼국수 성수점" },
+                { t: "14:00", d: "建大 Common Ground 貨櫃屋", loc: "Common Ground" },
+                { t: "17:00", d: "明洞漫畫街 & 聖誕燈光秀", loc: "Myeongdong" },
+                { t: "18:30", d: "Daiso 明洞站總店 (12層樓)", loc: "다이소 명동역점" }
+            ]},
+            4: { title: "Day 4: 水原華城、星空圖書館", date: "2026/01/26 (週一)", weather: "❄️ -6°C", memos: ["堂山搭2號線轉1號線去水原，務必早出門", "水原特色炸雞街必吃", "Starfield Suwon 建議傍晚去拍星空圖書館"], events: [
+                { t: "11:00", d: "水原華城 八達門", loc: "Suwon Hwaseong Fortress" },
+                { t: "13:00", d: "午餐：炸雞一條街", loc: "Suwon Fried Chicken Street" },
+                { t: "15:30", d: "城牆精華步道 (長安門-華虹門)", loc: "Hwahongmun" },
+                { t: "17:30", d: "水原星空圖書館 (Starfield)", loc: "Starfield Suwon" }
+            ]},
+            5: { title: "Day 5: 東大門、首爾塔夕陽", date: "2026/01/27 (週二)", weather: "☀️ -3°C", memos: ["16:30-17:30 抵達首爾塔看夕陽最美", "強烈建議從首爾塔搭計程車直達市廳(省力)", "市廳溜冰場氣氛超棒"], events: [
+                { t: "10:15", d: "昌信洞文具玩具街", loc: "Changsin-dong Stationery Market" },
+                { t: "13:30", d: "DDP 東大門設計廣場", loc: "DDP" },
+                { t: "15:00", d: "搭01號黃色公車上南山", loc: "N Seoul Tower" },
+                { t: "18:15", d: "晚餐：武橋洞美食街", loc: "Mugyo-dong" },
+                { t: "19:30", d: "首爾廣場溜冰 (冬季限定)", loc: "Seoul Plaza Skating Rink" }
+            ]},
+            6: { title: "Day 6: 穿韓服遊古宮、西村東村", date: "2026/01/28 (週三)", weather: "❄️ -5°C", memos: ["歷史博物館 8 樓露台可拍景福宮全景", "西村通仁市場可用銅錢換便當", "西巡邏街夕陽走起來很浪漫"], events: [
+                { t: "09:30", d: "光化門廣場拍世宗大王", loc: "Gwanghwamun Square" },
+                { t: "11:15", d: "午餐：通仁市場 (銅錢便當)", loc: "Tongin Market" },
+                { t: "13:00", d: "景福宮 & 韓服體驗", loc: "Gyeongbokgung" },
+                { t: "16:30", d: "昌德宮參觀", loc: "Changdeokgung" },
+                { t: "17:45", d: "西巡邏街漫步", loc: "Seosulla-gil" }
+            ]},
+            7: { title: "Day 7: 江原道滑雪一日遊", date: "2026/01/29 (週四)", weather: "❄️ -8°C", memos: ["集合點：弘大站 8 號出口直走 50 公尺", "務必準時 06:50 集合", "包含 8 小時纜車通行證，16:30 前還裝備"], events: [
+                { t: "06:50", d: "弘大站 8 號出口集合出發", loc: "Hongik Univ. Station Exit 8" },
+                { t: "09:10", d: "抵達 Welli Hilli Park 租借裝備", loc: "Welli Hilli Park" },
+                { t: "10:30", d: "基礎滑雪團體課程", loc: "Welli Hilli Park" },
+                { t: "11:30", d: "免費滑雪 & 自理午餐", loc: "Welli Hilli Park" },
+                { t: "17:00", d: "回程巴士出發返回弘大", loc: "Hongik Univ. Station" },
+                { t: "19:30", d: "晚餐：荒謬的生肉 (烤肉)", loc: "Ungteori Saenggogi Hongdae" }
+            ]},
+            8: { title: "Day 8: 首爾三大購物聖地", date: "2026/01/30 (週五)", weather: "☁️ -3°C", memos: ["The Hyundai Seoul 當「景點」逛最合適", "Goto Mall 悶熱人多，建議設定 2 小時快攻", "利用堂山站作為轉乘點可避開大站迷路"], events: [
+                { t: "10:30", d: "The Hyundai Seoul (汝矣島)", loc: "The Hyundai Seoul" },
+                { t: "14:00", d: "高速巴士地下街 (Goto Mall)", loc: "Goto Mall" },
+                { t: "16:30", d: "弘大商圈 & Kakao Friends", loc: "Kakao Friends Hongdae" },
+                { t: "19:00", d: "晚餐：弘大美食 (BBQ/Tube)", loc: "Hongdae Food" },
+                { t: "20:30", d: "弘大街頭表演 & 回程", loc: "Hongdae Street" }
+            ]},
+            9: { title: "Day 9: 望遠市場 & 返程", date: "2026/01/31 (週六)", weather: "☀️ 0°C", memos: ["望遠市場 QS 炸雞丁必吃", "預留 1.5 小時交通時間去機場最安心", "堂山站搭2號線轉 AREX 普通車去機場"], events: [
+                { t: "10:30", d: "第一站：望遠市場 (QS 炸雞丁)", loc: "Mangwon Market" },
+                { t: "12:30", d: "第二站：延南洞 (網紅咖啡廳)", loc: "Yeonnam-dong" },
+                { t: "15:30", d: "出發去機場 (堂山-弘大-AREX)", loc: "Incheon Airport T1" },
+                { t: "17:30", d: "機場時光 (退稅、逛免稅店)", loc: "Incheon Airport T1" },
+                { t: "19:45", d: "長榮 BR159 起飛", loc: "Incheon Airport T1" }
+            ]}
+        };
+
+        function renderDay(dayNum) {
+            const data = itineraryData[dayNum];
+            document.getElementById('dayTitle').innerText = data.title;
+            document.getElementById('dayDate').innerText = data.date;
+            document.getElementById('weatherIcon').innerText = data.weather;
+            
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = data.events.map(ev => `
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold ryan-text block mb-1">${ev.t}</span>
+                            <h4 class="text-md font-bold text-gray-800">${ev.d}</h4>
+                            <a href="https://map.naver.com/v5/search/${encodeURIComponent(ev.loc)}" target="_blank" class="naver-link inline-block mt-2">
+                                <i class="fa-solid fa-location-dot"></i> Naver Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const memoList = document.getElementById('memoList');
+            memoList.innerHTML = data.memos.map(m => `<li>${m}</li>`).join('');
+
+            document.querySelectorAll('.date-tab').forEach(t => {
+                t.classList.remove('tab-active');
+                if(t.dataset.day == dayNum) t.classList.add('tab-active');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const dateTabs = document.getElementById('dateTabs');
+        for (let i = 1; i <= 9; i++) {
+            const btn = document.createElement('div');
+            btn.className = "date-tab px-2 pb-2 text-gray-400 cursor-pointer text-sm flex-shrink-0 transition-all";
+            btn.dataset.day = i;
+            btn.innerHTML = `Day ${i}<br><span class="text-[10px]">${itineraryData[i].date.split('(')[0].split('/')[2]}日</span>`;
+            btn.onclick = () => renderDay(i);
+            dateTabs.appendChild(btn);
+        }
+
+        renderDay(1);
+    </script>
+</body>
+</html>
