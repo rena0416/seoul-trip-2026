@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首爾冬季浪漫行 2026 🇰🇷 (含地圖導航)</title>
+    <title>首爾冬季浪漫行 2026 🇰🇷 (行程手冊)</title>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,7 +14,7 @@
             --bg-color: #FFF8F0;
             --card-bg: #FFFFFF;
             --accent-blue: #56CCF2;
-            --naver-green: #03C75A; /* Naver 官方綠色 */
+            --naver-green: #03C75A;
         }
 
         body {
@@ -25,6 +25,7 @@
             padding: 0;
             padding-bottom: 80px;
             line-height: 1.6;
+            /* 背景裝飾：淡黃色圓點 */
             background-image: radial-gradient(#FFD54F 15%, transparent 16%), radial-gradient(#FFD54F 15%, transparent 16%);
             background-size: 60px 60px;
             background-position: 0 0, 30px 30px;
@@ -125,7 +126,6 @@
             border: 4px solid var(--accent-blue);
             box-shadow: 0 6px 0 rgba(86, 204, 242, 0.4);
             position: relative;
-            overflow: hidden;
         }
         .weather-info h2 { margin: 0; font-size: 1.5rem; font-weight: 800; }
         .weather-info p { margin: 5px 0 0; font-size: 1rem; font-weight: 600; color: #666; }
@@ -144,7 +144,7 @@
             background: var(--card-bg);
             border-radius: 18px;
             padding: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* 因為沒有圖片，間距稍微縮小一點 */
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border: 2px solid #fff;
             transition: transform 0.2s;
@@ -210,17 +210,17 @@
         }
 
         .kr-name {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #888;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
         }
 
         .description {
             font-size: 1rem;
             color: #444;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.5;
         }
 
@@ -228,41 +228,21 @@
         .naver-map-btn {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             background-color: var(--naver-green);
             color: white;
             text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-top: 5px;
+            margin-top: 8px;
             transition: background 0.2s;
-            box-shadow: 0 2px 4px rgba(3, 199, 90, 0.3);
+            box-shadow: 0 3px 6px rgba(3, 199, 90, 0.2);
         }
         .naver-map-btn:hover {
             background-color: #02b350;
-        }
-
-        /* 圖片樣式 */
-        .spot-image-container {
-            width: 100%;
-            height: 200px;
-            border-radius: 12px;
-            margin-top: 15px;
-            overflow: hidden;
-            border: 3px solid #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f9f9f9;
-            position: relative;
-        }
-
-        .spot-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            transform: translateY(-1px);
         }
 
         /* 備忘錄區塊 */
@@ -337,104 +317,103 @@
     </div>
 
     <script>
-        // 🔹 行程資料設定 🔹
-        // 注意：圖片部分需手動替換 'https://placehold.co/...' 為您的圖片網址
+        // 🔹 行程資料 (純文字版) 🔹
         
         const tripData = [
             {
                 day: "Day 1", date: "1/23 (五)", title: "抵達 & 永登浦", weather: { temp: "-3°C", text: "晴時多雲", icon: "🌤️" },
                 events: [
-                    { time: "07:05", title: "桃園機場起飛", kr: "BR170", desc: "帶著護照出發！", type: "transport", img: "" },
-                    { time: "11:30", title: "搭乘 AREX 機場快線", kr: "공항철도", desc: "搭普通車至弘大轉 2 號線", type: "transport", img: "" },
-                    { time: "13:00", title: "抵達 堂山站民宿", kr: "당산역", desc: "Check-in 放行李", type: "hotel", img: "" },
-                    { time: "14:30", title: "永登浦地下街", kr: "영등포지하상가", desc: "午餐 & 挖寶平價服飾", type: "shopping", img: "https://rawtraveltales.com/wp-content/uploads/2026/01/unnamed_%E7%BB%93%E6%9E%9C.webp" },
-                    { time: "15:30", title: "Daiso 大創", kr: "다이소 영등포점", desc: "生活小物採購", type: "shopping", img: "https://file.alphawiki.org/3c/3cf283bbc3dff2de4b6851dfcdc35b2eb4ccce28bbcc482e5739778cad9f8166.webp" },
-                    { time: "17:00", title: "時代廣場 & E-mart", kr: "타임스퀘어", desc: "大型購物中心逛街", type: "shopping", img: "" },
-                    { time: "19:30", title: "晚餐 & 返回民宿", kr: "저녁식사", desc: "回堂山站休息", type: "hotel", img: "" }
+                    { time: "07:05", title: "桃園機場起飛", kr: "BR170", desc: "帶著護照出發！", type: "transport" },
+                    { time: "11:30", title: "搭乘 AREX 機場快線", kr: "공항철도", desc: "搭普通車至弘大轉 2 號線", type: "transport" },
+                    { time: "13:00", title: "抵達 堂山站民宿", kr: "당산역", desc: "Check-in 放行李", type: "hotel" },
+                    { time: "14:30", title: "永登浦地下街", kr: "영등포지하상가", desc: "午餐 & 挖寶平價服飾", type: "shopping" },
+                    { time: "15:30", title: "Daiso 大創", kr: "다이소 영등포점", desc: "生活小物採購", type: "shopping" },
+                    { time: "17:00", title: "時代廣場 & E-mart", kr: "타임스퀘어", desc: "大型購物中心逛街", type: "shopping" },
+                    { time: "19:30", title: "晚餐 & 返回民宿", kr: "저녁식사", desc: "回堂山站休息", type: "hotel" }
                 ],
                 memos: ["機場交通：搭 AREX 普通車至弘大轉 2 號線最省錢。", "地下街：適合買平價衣服，時代廣場適合逛品牌。"]
             },
             {
                 day: "Day 2", date: "1/24 (六)", title: "傳統市場 & 韓屋", weather: { temp: "-5°C", text: "多雲", icon: "☁️" },
                 events: [
-                    { time: "10:15", title: "廣藏市場", kr: "광장시장", desc: "必吃：糯米麻花捲", type: "food", img: "https://judyer.com/wp-content/uploads/20230512150853_2.jpg" },
-                    { time: "13:00", title: "仁寺洞主街", kr: "인사동", desc: "逛 Ssamzigil 文創商場", type: "spot", img: "https://tchinese.visitseoul.net/file_save/art_img/2019/02/18/20190218_653_cb.jpg" },
-                    { time: "15:15", title: "益善洞韓屋村", kr: "익선동", desc: "韓屋咖啡廳下午茶、拍照", type: "spot", img: "https://placehold.co/600x400/3A1D1D/FEE500?text=Hanok+Village" },
-                    { time: "18:00", title: "晚餐", kr: "익선동 맛집", desc: "周邊享用美食", type: "food", img: "" }
+                    { time: "10:15", title: "廣藏市場", kr: "광장시장", desc: "必吃：綠豆煎餅、生拌牛肉", type: "food" },
+                    { time: "13:00", title: "仁寺洞主街", kr: "인사동", desc: "逛 Ssamzigil 文創商場", type: "spot" },
+                    { time: "15:15", title: "益善洞韓屋村", kr: "익선동", desc: "韓屋咖啡廳下午茶、拍照", type: "spot" },
+                    { time: "18:00", title: "晚餐", kr: "익선동 맛집", desc: "周邊享用美食", type: "food" }
                 ],
                 memos: ["散步路線：廣藏市場 → 清溪川 → 仁寺洞 → 益善洞。", "回程：鐘路3街搭 5 號線轉 2 號線回堂山。"]
             },
             {
                 day: "Day 3", date: "1/25 (日)", title: "聖水洞 & 明洞", weather: { temp: "-4°C", text: "晴朗", icon: "☀️" },
                 events: [
-                    { time: "10:15", title: "聖水洞 (Dior)", kr: "성수동 디올", desc: "網美牆打卡、咖啡街漫步", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Dior+Seongsu" },
-                    { time: "11:30", title: "SM 娛樂總部", kr: "광야 서울", desc: "K-POP 粉絲必看巨大 LED", type: "spot", img: "https://placehold.co/600x400/FFC0CB/FFFFFF?text=SM+KWANGYA" },
-                    { time: "14:00", title: "建大 Common Ground", kr: "커먼그라운드", desc: "藍色貨櫃屋商場", type: "spot", img: "https://placehold.co/600x400/56CCF2/FFFFFF?text=Blue+Container" },
-                    { time: "17:00", title: "明洞漫畫街", kr: "재미로", desc: "可愛卡通街拍 (3號出口)", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Cartoon+Street" },
-                    { time: "18:30", title: "Daiso 明洞旗艦店", kr: "다이소 명동역점", desc: "挑戰 12 層樓高的大創", type: "shopping", img: "https://placehold.co/600x400/FF9F00/FFFFFF?text=Daiso+12F" },
-                    { time: "20:00", title: "miniline & 晚餐", kr: "미니라인", desc: "袖珍模型店 & 路邊攤小吃", type: "food", img: "" }
+                    { time: "10:15", title: "聖水洞 (Dior)", kr: "성수동 디올", desc: "網美牆打卡、咖啡街漫步", type: "spot" },
+                    { time: "11:30", title: "SM 娛樂總部", kr: "광야 서울", desc: "K-POP 粉絲必看巨大 LED", type: "spot" },
+                    { time: "14:00", title: "建大 Common Ground", kr: "커먼그라운드", desc: "藍色貨櫃屋商場", type: "spot" },
+                    { time: "17:00", title: "明洞漫畫街", kr: "재미로", desc: "可愛卡通街拍 (3號出口)", type: "spot" },
+                    { time: "18:30", title: "Daiso 明洞旗艦店", kr: "다이소 명동역점", desc: "挑戰 12 層樓高的大創", type: "shopping" },
+                    { time: "20:00", title: "miniline & 晚餐", kr: "미니라인", desc: "袖珍模型店 & 路邊攤小吃", type: "food" }
                 ],
                 memos: ["聖水洞：堂山搭 2 號線直達。", "明洞攻略：漫畫街 → Daiso → miniline → 小吃攤晚餐。"]
             },
             {
                 day: "Day 4", date: "1/26 (一)", title: "水原華城", weather: { temp: "-6°C", text: "寒冷", icon: "❄️" },
                 events: [
-                    { time: "09:00", title: "前往水原", kr: "수원역", desc: "地鐵車程較長，早點出發", type: "transport", img: "" },
-                    { time: "11:00", title: "八達門 & 華城行宮", kr: "화성행궁", desc: "參觀歷史古蹟、《大長今》拍攝地", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Hwaseong+Palace" },
-                    { time: "13:00", title: "午餐：炸雞一條街", kr: "수원통닭거리", desc: "品嚐水原排骨炸雞", type: "food", img: "https://placehold.co/600x400/FFC0CB/FFFFFF?text=Fried+Chicken" },
-                    { time: "15:30", title: "城牆漫步", kr: "화홍문", desc: "長安門走到華虹門，景色最美", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Hwahongmun+Gate" },
-                    { time: "17:30", title: "星空圖書館 (水原店)", kr: "별마당도서관 수원", desc: "Starfield 購物中心內打卡", type: "spot", img: "https://placehold.co/600x400/3A1D1D/FEE500?text=Starfield+Library" }
+                    { time: "09:00", title: "前往水原", kr: "수원역", desc: "地鐵車程較長，早點出發", type: "transport" },
+                    { time: "11:00", title: "八達門 & 華城行宮", kr: "화성행궁", desc: "參觀歷史古蹟、《大長今》拍攝地", type: "spot" },
+                    { time: "13:00", title: "午餐：炸雞一條街", kr: "수원통닭거리", desc: "品嚐水原排骨炸雞", type: "food" },
+                    { time: "15:30", title: "城牆漫步", kr: "화홍문", desc: "長安門走到華虹門，景色最美", type: "spot" },
+                    { time: "17:30", title: "星空圖書館 (水原店)", kr: "별마당도서관 수원", desc: "Starfield 購物中心內打卡", type: "spot" }
                 ],
                 memos: ["交通：堂山搭 2 號線轉 1 號線至水原站，轉公車/計程車至八達門。", "城牆：長安門到華虹門這段最平緩好走。"]
             },
             {
                 day: "Day 5", date: "1/27 (二)", title: "首爾塔 & 市廳", weather: { temp: "-4°C", text: "晴朗", icon: "☀️" },
                 events: [
-                    { time: "10:15", title: "昌信洞文具玩具街", kr: "동대문 완구거리", desc: "懷舊批發市場", type: "shopping", img: "" },
-                    { time: "13:30", title: "DDP & 興仁之門", kr: "DDP", desc: "設計感建築拍照", type: "spot", img: "https://placehold.co/600x400/56CCF2/FFFFFF?text=DDP+Design+Plaza" },
-                    { time: "15:30", title: "南山首爾塔", kr: "N서울타워", desc: "看夕陽、愛情鎖牆", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=N+Seoul+Tower" },
-                    { time: "19:30", title: "首爾廣場溜冰", kr: "서울광장 스케이트장", desc: "城市燈光下浪漫溜冰", type: "spot", img: "https://placehold.co/600x400/FFC0CB/FFFFFF?text=Ice+Skating" }
+                    { time: "10:15", title: "昌信洞文具玩具街", kr: "동대문 완구거리", desc: "懷舊批發市場", type: "shopping" },
+                    { time: "13:30", title: "DDP & 興仁之門", kr: "DDP", desc: "設計感建築拍照", type: "spot" },
+                    { time: "15:30", title: "南山首爾塔", kr: "N서울타워", desc: "看夕陽、愛情鎖牆", type: "spot" },
+                    { time: "19:30", title: "首爾廣場溜冰", kr: "서울광장 스케이트장", desc: "城市燈光下浪漫溜冰", type: "spot" }
                 ],
                 memos: ["首爾塔交通：DDP 附近搭 01 號循環公車直達。", "下山：強烈建議搭計程車去市廳 (約15分)，省時舒適。"]
             },
             {
                 day: "Day 6", date: "1/28 (三)", title: "古宮 & 韓服", weather: { temp: "-3°C", text: "晴時多雲", icon: "⛅" },
                 events: [
-                    { time: "09:45", title: "歷史博物館露台", kr: "대한민국역사박물관", desc: "8樓拍景福宮全景 (必去!)", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Museum+View" },
-                    { time: "11:15", title: "通仁市場", kr: "통인시장", desc: "銅錢便當體驗，吃油炸年糕", type: "food", img: "https://placehold.co/600x400/FFC0CB/FFFFFF?text=Tongin+Market" },
-                    { time: "13:00", title: "景福宮 (穿韓服)", kr: "경복궁", desc: "戶外回憶街道復古拍照", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Gyeongbokgung" },
-                    { time: "17:45", title: "西巡邏街", kr: "서순라길", desc: "沿宗廟石牆路散步賞夕陽", type: "spot", img: "https://placehold.co/600x400/3A1D1D/FFFFFF?text=Seosulla+Gil" }
+                    { time: "09:45", title: "歷史博物館露台", kr: "대한민국역사박물관", desc: "8樓拍景福宮全景 (必去!)", type: "spot" },
+                    { time: "11:15", title: "通仁市場", kr: "통인시장", desc: "銅錢便當體驗，吃油炸年糕", type: "food" },
+                    { time: "13:00", title: "景福宮 (穿韓服)", kr: "경복궁", desc: "戶外回憶街道復古拍照", type: "spot" },
+                    { time: "17:45", title: "西巡邏街", kr: "서순라길", desc: "沿宗廟石牆路散步賞夕陽", type: "spot" }
                 ],
                 memos: ["西村：堂山搭 2 號線轉 3 號線至景福宮站。", "東村散步：昌德宮正門右轉沿石牆走就是西巡邏街。"]
             },
             {
                 day: "Day 7", date: "1/29 (四)", title: "江原道滑雪", weather: { temp: "-8°C", text: "下雪", icon: "🌨️" },
                 events: [
-                    { time: "06:50", title: "弘大集合", kr: "홍대입구역 8번출구", desc: "8號出口，準時出發", type: "transport", img: "" },
-                    { time: "10:30", title: "滑雪體驗", kr: "웰리힐리파크", desc: "滑雪教學 + 纜車 + 自由滑雪", type: "spot", img: "https://placehold.co/600x400/56CCF2/FFFFFF?text=Skiing+Illustration" },
-                    { time: "17:00", title: "回程巴士", kr: "서울행 버스", desc: "返回弘大", type: "transport", img: "" },
-                    { time: "19:00", title: "晚餐：荒謬的生肉", kr: "엉터리생고기 홍대점", desc: "人氣烤肉吃到飽", type: "food", img: "https://placehold.co/600x400/FFC0CB/FFFFFF?text=Korean+BBQ" }
+                    { time: "06:50", title: "弘大集合", kr: "홍대입구역 8번출구", desc: "8號出口，準時出發", type: "transport" },
+                    { time: "10:30", title: "滑雪體驗", kr: "웰리힐리파크", desc: "滑雪教學 + 纜車 + 自由滑雪", type: "spot" },
+                    { time: "17:00", title: "回程巴士", kr: "서울행 버스", desc: "返回弘大", type: "transport" },
+                    { time: "19:00", title: "晚餐：荒謬的生肉", kr: "엉터리생고기 홍대점", desc: "人氣烤肉吃到飽", type: "food" }
                 ],
                 memos: ["集合：務必準時 06:50！", "滑雪：包含 8 小時纜車，16:30 前歸還裝備。"]
             },
             {
                 day: "Day 8", date: "1/30 (五)", title: "購物制霸", weather: { temp: "-3°C", text: "多雲", icon: "☁️" },
                 events: [
-                    { time: "10:30", title: "The Hyundai Seoul", kr: "더현대 서울", desc: "5樓空中花園拍照", type: "spot", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Hyundai+Seoul" },
-                    { time: "14:00", title: "高速巴士地下街", kr: "고속터미널 지하상가", desc: "平價服飾快攻", type: "shopping", img: "" },
-                    { time: "16:30", title: "弘大商圈", kr: "홍대 걷고싶은거리", desc: "Kakao Friends 旗艦店", type: "shopping", img: "https://placehold.co/600x400/FF9F00/FFFFFF?text=Kakao+Friends" },
-                    { time: "20:30", title: "街頭表演", kr: "홍대 버스킹", desc: "感受週五熱鬧氣氛", type: "spot", img: "" }
+                    { time: "10:30", title: "The Hyundai Seoul", kr: "더현대 서울", desc: "5樓空中花園拍照", type: "spot" },
+                    { time: "14:00", title: "高速巴士地下街", kr: "고속터미널 지하상가", desc: "平價服飾快攻", type: "shopping" },
+                    { time: "16:30", title: "弘大商圈", kr: "홍대 걷고싶은거리", desc: "Kakao Friends 旗艦店", type: "shopping" },
+                    { time: "20:30", title: "街頭表演", kr: "홍대 버스킹", desc: "感受週五熱鬧氣氛", type: "spot" }
                 ],
                 memos: ["交通撇步：從高巴去弘大，先搭 9 號線回「堂山站」，站內轉 2 號線直達弘大，不迷路！"]
             },
             {
                 day: "Day 9", date: "1/31 (六)", title: "望遠/延南洞 & 返程", weather: { temp: "2°C", text: "晴朗", icon: "☀️" },
                 events: [
-                    { time: "10:30", title: "望遠市場美食", kr: "망원시장", desc: "吃炸雞丁、可樂餅", type: "food", img: "https://placehold.co/600x400/FFC0CB/FFFFFF?text=Mangwon+Market" },
-                    { time: "12:30", title: "延南洞咖啡廳", kr: "연남동", desc: "京義線林道散步", type: "food", img: "https://placehold.co/600x400/FEE500/3A1D1D?text=Yeonnam+Cafe" },
-                    { time: "15:00", title: "回堂山拿行李", kr: "당산역", desc: "最後整理", type: "hotel", img: "" },
-                    { time: "15:30", title: "出發去機場", kr: "공항철도", desc: "前往仁川機場 T1", type: "transport", img: "" },
-                    { time: "19:45", title: "長榮 BR159 起飛", kr: "인천공항", desc: "回家囉！👋", type: "transport", img: "" }
+                    { time: "10:30", title: "望遠市場美食", kr: "망원시장", desc: "吃炸雞丁、可樂餅", type: "food" },
+                    { time: "12:30", title: "延南洞咖啡廳", kr: "연남동", desc: "京義線林道散步", type: "food" },
+                    { time: "15:00", title: "回堂山拿行李", kr: "당산역", desc: "最後整理", type: "hotel" },
+                    { time: "15:30", title: "出發去機場", kr: "공항철도", desc: "前往仁川機場 T1", type: "transport" },
+                    { time: "19:45", title: "長榮 BR159 起飛", kr: "인천공항", desc: "回家囉！👋", type: "transport" }
                 ],
                 memos: ["移動：堂山→望遠→延南洞，距離近，建議搭計程車省力。", "機場：預留 1.5 小時交通時間。"]
             }
@@ -456,7 +435,6 @@
 
             timelineContainer.innerHTML = '';
             data.events.forEach(evt => {
-                const imgHtml = evt.img ? `<div class="spot-image-container"><img src="${evt.img}" class="spot-image" loading="lazy" alt="圖片"></div>` : '';
                 const krHtml = evt.kr ? `<span class="kr-name">(${evt.kr})</span>` : '';
                 
                 // Naver Map Link
@@ -469,7 +447,6 @@
                         ${krHtml}
                         <div class="description">${evt.desc}</div>
                         ${mapHtml}
-                        ${imgHtml}
                     </div>
                 `;
                 timelineContainer.innerHTML += cardHtml;
